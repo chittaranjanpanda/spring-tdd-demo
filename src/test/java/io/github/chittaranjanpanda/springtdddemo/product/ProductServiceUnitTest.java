@@ -12,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -28,13 +30,11 @@ public class ProductServiceUnitTest {
 
     @Before
     public void setup() {
-        this.productService = new ProductService(this.productRepository);
-       // MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.initMocks(this.getClass());
     }
 
     @Test
     public void testAddProduct() {
-
         Product mockProduct = Product.builder()
                 .name("Mi note 5 Pro")
                 .price(15000.00)
@@ -45,7 +45,8 @@ public class ProductServiceUnitTest {
 
         Product product = productService.addProduct(mockProduct);
 
-        log.info(product.getName());
+        assertNotNull(product);
+        assertEquals(product.getName(),mockProduct.getName());
     }
 
 }

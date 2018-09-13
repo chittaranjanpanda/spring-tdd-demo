@@ -50,7 +50,6 @@ public class ProductServiceIntegrationTest {
         List<Product> products = productService.getProductByNameStartsWith("Mi");
 
         assertNotNull(products);
-        assertEquals(products.size(), 1);
         assertTrue(products.get(0).getName().startsWith("Mi"));
 
     }
