@@ -13,9 +13,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 @Entity ( name = "PRODUCT" )
+@NamedQueries ( {
+        @NamedQuery ( name = "Product.findByNameStartsWith", query = "SELECT p from PRODUCT p where p.name like CONCAT(:name,'%')" )
+} )
 public class Product implements Serializable {
     @Id
-    @GeneratedValue ( strategy = GenerationType.AUTO )
+    @GeneratedValue ( strategy = GenerationType.IDENTITY )
+    @Column(updatable = false, unique = true)
     private Long id;
     private String name;
     private Double price;

@@ -27,4 +27,11 @@ public class ProductService {
         return productRepository.findByName(name);
     }
 
+    public Product addProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+    public List<Product> getProductByNameStartsWith(String name) {
+        return productRepository.findByNameStartsWith(name);
+    }
 }
